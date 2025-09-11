@@ -1,37 +1,30 @@
-# 2025.9/10
-##データ分析の6ステップに関する学習メモ / Learning Notes on the 6 Steps of Data Analysis
+# 2025.9/11
+# 今日の学び / Today's Learning (Data Analysis)
 
-## 元の理解 (Original Understanding)
-- **Ask**: 下調べに相当  
-- **Prepare**: 質問を実施してデータを取る  
-  - 集めたデータを適切に保管する段階があることはわかる  
-- **Analyze**: 分析してその傾向を割り出す  
-- **Shear**: 個人が特定されないように加工した後、共有する  
-- **Act**: 現実的な実践プランを練って実行に移す  
+## 学んだこと (Learned)
+- **データ分析のプロセス**
+  1. Ask: 調査内容をまとめ、質問を立てる  
+  2. Prepare: データを収集し、適切に保存  
+  3. Process: データを整形し、分析可能な状態にする  
+  4. Analyze: 洞察を得る  
+  5. Share: 結果を共有  
+  6. Act: 結果を基に行動する  
 
----
+- **データアナリストに求められるスキル**
+  - Curiosity  
+  - Understanding of context  
+  - Technical mindset  
+  - Data design  
+  - Data strategy  
 
-## 指摘された点 (Feedback & Corrections)
-1. **Prepare** は「質問する」段階ではなく、必要なデータを集め、保存・管理する段階。  
-2. **Process**（データクリーニング）が抜けていた。欠損値や外れ値を処理し、分析可能な状態に整える重要なステップ。  
-3. **Shear → Share** が正しく、内容も「匿名化」だけでなく「結果をわかりやすく伝える」ことが中心。  
+- **Data-driven decision making**: データに基づく意思決定（例: ECサイトのレコメンド機能）。
 
----
+- **役割の違い**
+  - Data Science: 新しいモデルやアルゴリズムを構築  
+  - Data Analysis / Data Analytics: データを調べて洞察を得る（違いはまだ不明確）
 
-## 修正版 (Revised Understanding)
-
-### 日本語 (Japanese)
-1. **Ask**: 問題を定義し、ステークホルダーのニーズを明確にする  
-2. **Prepare**: 必要なデータを収集し、保存・管理する  
-3. **Process**: データをクリーニングして、分析できる状態に整える  
-4. **Analyze**: データを調査し、パターンや傾向を発見する  
-5. **Share**: 結果をわかりやすく可視化して共有する（必要に応じて匿名化も行う）  
-6. **Act**: 得られた知見を基に行動を起こす  
-
-### English
-1. **Ask**: Define the problem and clarify stakeholders’ needs  
-2. **Prepare**: Collect and store the necessary data  
-3. **Process**: Clean and organize the data to make it ready for analysis  
-4. **Analyze**: Explore the data to find patterns and trends  
-5. **Share**: Communicate results clearly through visualization or reports (apply anonymization if needed)  
-6. **Act**: Take action based on insights gained
+## 理解が足りない点 (Gaps in Understanding)
+- 「Prepare」と「Process」の違いを明確に説明できていない。  
+- Data Analysis と Data Analytics の違いが不明確。  
+- 統計的な方法（相関と因果、サンプリング、A/Bテスト）の理解が不足。  
+- 実務ツール（SQL、pandas、可視化ツール）の具体的な理解が不足。
