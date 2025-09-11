@@ -1,0 +1,30 @@
+2025/09/11
+# 今日の学び / Today's Learning (Data Analysis)
+
+## 学んだこと (Learned)
+- **データ分析のプロセス**
+  1. Ask: 調査内容をまとめ、質問を立てる  
+  2. Prepare: データを収集し、適切に保存  
+  3. Process: データを整形し、分析可能な状態にする  
+  4. Analyze: 洞察を得る  
+  5. Share: 結果を共有  
+  6. Act: 結果を基に行動する  
+
+- **データアナリストに求められるスキル**
+  - Curiosity  
+  - Understanding of context  
+  - Technical mindset  
+  - Data design  
+  - Data strategy  
+
+- **Data-driven decision making**: データに基づく意思決定（例: ECサイトのレコメンド機能）。
+
+- **役割の違い**
+  - Data Science: 新しいモデルやアルゴリズムを構築  
+  - Data Analysis / Data Analytics: データを調べて洞察を得る（違いはまだ不明確）
+
+## 理解が足りない点 (Gaps in Understanding)
+- 「Prepare」と「Process」の違いを明確に説明できていない。  
+- Data Analysis と Data Analytics の違いが不明確。  
+- 統計的な方法（相関と因果、サンプリング、A/Bテスト）の理解が不足。  
+- 実務ツール（SQL、pandas、可視化ツール）の具体的な理解が不足。
