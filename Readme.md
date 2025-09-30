@@ -25,7 +25,7 @@ Kaggle – Intro to Python（Booleans, Conditionals, Functions, `help`, `round`�
 ---
 
 ## ■ 参照した資料・リンク
-- Kaggle Notebook: https://www.kaggle.com/code/moku36/exercise-booleans-and-conditionals/edit
+- Kaggle Notebook: https://www.kaggle.com
 
 ---
 
