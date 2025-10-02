@@ -1,101 +1,88 @@
 # 学習ログ / Learning Log
 
 ## ■ 日付（JST） / Date
-2025/09/30
+
+2025/10/02
 
 ## ■ 学習テーマ / Topic
-Kaggle – Intro to Python（Booleans, Conditionals, Functions, `help`, `round`）
+
+Kaggle – R 基礎（入出力・データ型・基本関数）
 
 ## ■ 目的 / Goal (JP→EN one-liner)
-- JP: Kaggle演習を通じて、真偽値と条件分岐・関数定義の基本を“手順化”して定着させる  
-- EN: Turn booleans, conditionals, and functions into a repeatable routine via Kaggle exercises.
+
+* **JP:** Kaggle環境でRの基本入出力とデータ型の扱いを身につけ、次回から迷わずデータを読み込めるようにする。
+* **EN:** Gain confidence with R I/O and data types in Kaggle so I can import and inspect datasets without friction.
 
 ---
 
-## ■ 今日やったこと（一次メモ・JP中心）
-- `help()` の読み方（ヘッダーと短い説明）
-- `round(x, ndigits)` の挙動（バンカーズ・ラウンディング）
-- `if / elif / else` と境界条件の扱い（`> 0` vs `> 1`）
-- `and / or / not` の優先順位（`not` > `and` > `or`）と括弧の重要性
-- デフォルト引数（`def f(a, b=3)`）
-- 符号判定関数 `sign` の実装
-- 簡潔なブール返却（`return number < 0`）
-- Kaggleセットアップセルの意味（`binder.bind(globals())`, `from learntools... import *`）
+## ■ 今日やったこと
+
+* Rにおける四則演算と基本データ型（numeric / character / logical / factor の基礎）
+* `print()`, `head()`, `tail()` の挙動確認（tibble/data.frame双方）
+* CSVの読み込み
+
+  * `readr::read_csv()`（tidyverse / tibble）
+  * `base::read.csv()`（base R / data.frame）
+* 読み込み後の基本確認：`dim()`, `names()`, `glimpse()`, `str()`
+* Kaggle の相対パス（例：`../input/<dataset-name>/<file>.csv`）の扱い
+* 取り違えやすい点（列名重複の自動改名、型推定メッセージの意味）
 
 ---
 
 ## ■ 参照した資料・リンク
-- Kaggle Notebook: https://www.kaggle.com
+
+* Kaggle Notebook: Getting Started in R (First Steps)
+  [https://www.kaggle.com/code/rtatman/getting-started-in-r-first-steps/notebook](https://www.kaggle.com/code/rtatman/getting-started-in-r-first-steps/notebook)
 
 ---
 
-## ■ 自分の理解で怪しい所（要修正ポイント）→ **正しい説明**
-1. **`help()` のヘッダー解釈**  
-   - × `round(number, ndigits=None)` の `=None` の意味が曖昧  
-   - ✓ **省略可能な引数**で、指定しなければ `None` が渡る設計というサイン
+## ■ 自分の理解で怪しい所（要修正ポイント → 正しい説明）
 
-2. **`round` の丸め規則**  
-   - × 常に「.5 は切り上げ」  
-   - ✓ Python は **最近接の偶数**に丸める（例：`round(2.5)==2`, `round(3.5)==4`）。必要なら `decimal` の `ROUND_HALF_UP` を使用
+1. **`read.csv` と `read_csv` の違いが曖昧**
 
-3. **境界条件の取り違え**  
-   - × 正の判定に `n > 1` を使った  
-   - ✓ **正**は `n > 0`、**負**は `n < 0`、**ゼロ**は `n == 0`
+* **正:** `read.csv()` は **base R**（返り値は data.frame）。`readr::read_csv()` は **tidyverse**（返り値は tibble）。tibble は印字が簡潔で、型推定が速く、`glimpse()` との相性が良い。
+* **Tip:** Kaggleでtidyverseを使う場合は **`readr::read_csv()` を優先**。base流儀が必要なときだけ `read.csv()`。
 
-4. **ブール式の優先順位**  
-   - × `not`/`and`/`or` が混じる式をそのまま書いた  
-   - ✓ `not` > `and` > `or`。**迷ったら括弧で意図を固定**する  
-     ```python
-     ok = have_umbrella or (rain < 5 and have_hood) or not (rain > 0 and is_workday)
-     ```
+2. **パスや文字列のクォート忘れ**
 
-5. **デフォルト引数の使い方**  
-   - × 「引数1個のとき」「2個のとき」で実装が揺れる  
-   - ✓ 2つ目に **既定値**を置く：`def to_smash(total, friends=3): ...`
+* **正:** ファイルパスは**必ず文字列で指定**：`read_csv("../input/food-choices/food_coded.csv")`。
 
-6. **三項演算子の構文**  
-   - × `True if cond False` のような形  
-   - ✓ 正しくは `A if cond else B`。ただし比較式自体がブールを返すなら三項演算子は不要
+3. **読み込み後メッセージの解釈**（“New names…”, `spec()`）
 
-7. **Kaggle のセットアップ未実行**  
-   - × `q1` 未定義のまま `q1.check()`  
-   - ✓ **最初に**セットアップセルを実行（`Restart & Run All` でも可）
+* **正:** 同名列があると**自動で連番付きに改名**（例：`...10`, `...12`）。エラーではない。
+  型推定メッセージは**通知**であり、`show_col_types = FALSE` で非表示にできる。
+  必要なら `col_types=` で型を明示指定できる。
+
+4. **因子（factor）と文字列（character）の混同**
+
+* **正:** R 4.0以降、`read.csv()` でもデフォルトで文字列は **stringsAsFactors=FALSE**（＝character）が基本。分類用途・順序が必要な列のみ **`factor()`** へ変換する。
+
+5. **`print()` の必要性**
+
+* **正:** R コンソールは最後の値を**自動表示**する。Notebook でもオブジェクト名を単独行にすれば表示される。`print()` は**明示的に整形したい時**やループ内での出力に使う。
 
 ---
 
-## ■ 英語の簡単要約（2–3文）
-Practiced reading `help()` headers and writing concise conditionals.  
-Clarified Python’s rounding rule (banker’s rounding) and fixed boundary mistakes in `if` chains.  
-Learned to rely on default parameters and parentheses to control boolean precedence.
+
+
+## ■ 英語の簡単要約（Short EN Summary）
+
+I practiced basic R in Kaggle: arithmetic, core data types, and essential I/O.
+I learned the difference between `base::read.csv()` (data.frame) and `readr::read_csv()` (tibble), how to interpret the import messages (auto-renaming duplicate columns and type inference), and how to quickly inspect data with `glimpse()`, `head()`, and `dim()`.
+
 
 ---
 
-## ■ 成果物（コード/断片）
+## ■ 所要時間 / Time spent
 
-```python
-# 1) sign: 三分岐（読みやすさ重視）
-def sign(n):
-    if n < 0:
-        return -1
-    elif n > 0:
-        return 1
-    else:
-        return 0
+未記録（あとで追記）
 
-# ワンライナー版
-def sign_one_liner(n):
-    return (n > 0) - (n < 0)
+---
 
-# 2) 簡潔なブール返却
-def concise_is_negative(number):
-    return number < 0
+## ■ 次にやりたいこと（Next steps）
 
-# 3) デフォルト引数
-def to_smash(total, friends=3):
-    return total % friends
+* 列型の**明示指定**（`col_types=`）で実務的に堅い読み込みを体験
+* **欠損処理**（`mutate()`, `replace_na()`, `drop_na()`）の練習
+* **要約と可視化**：`group_by()` + `summarise()` → `ggplot2` で1枚の図に
+* 使う列が固まったら、**前処理レシピ**（関数化 or RMarkdown/Notebook化）を作成して再利用可能にする
 
-# 4) 論理の意図固定（括弧で明示）
-def prepared_for_weather(have_umbrella, rain_level, have_hood, is_workday):
-    return have_umbrella \
-        or (rain_level < 5 and have_hood) \
-        or not (rain_level > 0 and is_workday)
